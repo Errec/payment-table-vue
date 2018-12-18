@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router.js'
+import store from './store.js'
 import * as firebase from 'firebase'
 import Vuetable from 'vuetable-2'
 import VueFormGenerator from "vue-form-generator"
-import store from './store'
 
 Vue.config.productionTip = false
 
