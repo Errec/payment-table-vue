@@ -1,5 +1,12 @@
 <template>
    <div class="ui container">
+
+    <div>
+      {{table}}
+    </div>
+
+
+
     <vuetable ref="vuetable"
         api-url="https://vuetable.ratiw.net/api/users"
         :fields="fields"
@@ -25,6 +32,11 @@ import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePagination
       Vuetable,
       VuetablePagination,
       VuetablePaginationInfo
+    },
+    computed: {
+      table () {
+        return this.$store.getters.loadedTable
+      }
     },
     data () {
       return {
