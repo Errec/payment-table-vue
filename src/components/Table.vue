@@ -2,18 +2,14 @@
   <div class="table">
     <table>
       <tr>
-        <th>Name</th>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Description</th>
+        <th v-for="(value, key) in table[0]">
+          {{ key }}
+        </th>
       </tr>
-      <tr>
-        <td>{{table[0].Name}}</td>
-        <td>{{table[0].ID}}</td>
-        <td>{{table[0].Date}}</td>
-        <td>{{table[0].Amount}}</td>
-        <td>{{table[0].Description}}</td>
+      <tr v-for="rows in table">
+        <td v-for="value in rows">
+          {{value}}
+        </td>
       </tr>
     </table>
 
@@ -21,7 +17,6 @@
 </template>
 
 <script>
-
   export default {
     computed: {
       table () {
