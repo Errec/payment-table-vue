@@ -1,61 +1,37 @@
 <template>
-   <div class="ui container">
+  <div class="table">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>{{table[0].Name}}</td>
+        <td>{{table[0].ID}}</td>
+        <td>{{table[0].Date}}</td>
+        <td>{{table[0].Amount}}</td>
+        <td>{{table[0].Description}}</td>
+      </tr>
+    </table>
 
-    <div>
-      {{table}}
-    </div>
-
-
-
-    <vuetable ref="vuetable"
-        api-url="https://vuetable.ratiw.net/api/users"
-        :fields="fields"
-        pagination-path=""
-        @vuetable:pagination-data="onPaginationData"
-      >
-
-      </vuetable>
-      <vuetable-pagination ref="pagination"
-        @vuetable-pagination:change-page="onChangePage"
-      ></vuetable-pagination>
-      </div>
+  </div>
 </template>
 
 <script>
-import Vuetable from 'vuetable-2/src/components/Vuetable'
-import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
-
 
   export default {
-    components: {
-      Vuetable,
-      VuetablePagination,
-      VuetablePaginationInfo
-    },
     computed: {
       table () {
-        return this.$store.getters.loadedTable
+        return this.$store.getters.userTable
       }
     },
     data () {
       return {
-        fields: ['name', 'email','birthdate','nickname','gender','__slot:actions']
       }
     },
-    methods: {
-      onPaginationData (paginationData) {
-        this.$refs.pagination.setPaginationData(paginationData)
-      },
-      onChangePage (page) {
-        this.$refs.vuetable.changePage(page)
-      },
-      editRow(rowData){
-        alert("You clicked edit on"+ JSON.stringify(rowData))
-      },
-      deleteRow(rowData){
-        alert("You clicked delete on"+ JSON.stringify(rowData))
-      }
-    }
+
   }
 </script>

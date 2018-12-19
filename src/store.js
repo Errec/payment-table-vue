@@ -18,23 +18,43 @@ export default new Vuex.Store({
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    setTable (state, payload) {
+      state.userTable = payload
     }
   },
   actions: {
     signUserIn ({commit}, payload) {
+      Vue.swal({
+        title: 'Logging...'
+      });
+      Vue.swal.showLoading();
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
+            setTimeout(() => {
+              Vue.swal.close()
+            }, 500)
             const newUser = {
-              id: user.uid,
-              userTable: []
+              id: user.uid
             }
+
             commit('setUser', newUser)
+
+            firebase.database().ref('/payments').on('value', snapshot => {
+              const loadedTable = snapshot.val()
+              commit('setTable', loadedTable)
+            })
+
           }
         )
         .catch(
           error => {
-            console.log(error)
+            Vue.swal({
+              type: 'error',
+              title: 'Oops...',
+              text: error
+            })
           }
         )
     }

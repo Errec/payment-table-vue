@@ -2,13 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router.js'
 import store from './store.js'
+import VueSweetalert2 from 'vue-sweetalert2'
 import * as firebase from 'firebase'
-import Vuetable from 'vuetable-2'
 import VueFormGenerator from "vue-form-generator"
+ 
 
 Vue.config.productionTip = false
 
-Vue.use(Vuetable)
+Vue.use(VueSweetalert2)
 Vue.use(VueFormGenerator)
 
 new Vue({
