@@ -16,9 +16,14 @@
       </tr>
       </tbody>
     </table>
+
     <div>
       <button type="button" @click="previousPage"> <- back</button>
       <button type="button" @click="nextPage">next -></button>
+    </div>
+
+    <div>
+      <button type="button" @click="sortTable(false)"> sort by name</button>
     </div>
 
   </div>
@@ -35,7 +40,8 @@
     data () {
       return {
         currentFirst: 0,
-        currentLast: this.pageSize
+        currentLast: this.pageSize,
+        sortReverse: true
       }
     },
     methods: {
@@ -54,6 +60,9 @@
         } else {
           return
         }
+      },
+      sortTable (sortReverse) {
+        this.$store.dispatch('sortTable', sortReverse)
       }
     }
 

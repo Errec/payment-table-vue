@@ -53,6 +53,18 @@ export default new Vuex.Store({
             })
           }
         )
+    },
+    sortTable({commit,state},payload){
+      const sortedUserTable = [...state.userTable].sort((a,b) => {
+        if(a['Name'] > b['Name']){return 1}
+        if(a['Name'] < b['Name']){return -1}
+        return 0
+      })
+
+      if(payload){
+        sortedUserTable.reverse()
+      }
+      commit('setTable', sortedUserTable)
     }
   },
   getters: {
