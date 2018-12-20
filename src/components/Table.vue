@@ -23,7 +23,11 @@
     </div>
 
     <div>
-      <button type="button" @click="sortTable(false)"> sort by name</button>
+      <button type="button" @click="sortTable(sortReverse)"> sort by name</button>
+    </div>
+
+    <div>
+      <label><input type="text" name="Search by Name" v-model="nameSearch" placeholder="Name"></label>
     </div>
 
   </div>
@@ -39,6 +43,7 @@
     },
     data () {
       return {
+        nameSearch: '',
         currentFirst: 0,
         currentLast: this.pageSize,
         sortReverse: true
@@ -62,7 +67,17 @@
         }
       },
       sortTable (sortReverse) {
-        this.$store.dispatch('sortTable', sortReverse)
+        let payload = {
+          sortReverse: sortReverse,
+          category: 'Name'
+        }
+        this.$store.dispatch('sortTable', payload)
+        this.sortReverse = !this.sortReverse
+      }
+    },
+    watch: {
+      nameSearch () {
+        this.$store.dispatch('filterTable', this.nameSearch)
       }
     }
 

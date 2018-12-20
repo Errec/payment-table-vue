@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     userTable: [],
+    resultTable: [],
+    userBaseTable: [],
     user: null
   },
   mutations: {
@@ -15,6 +18,9 @@ export default new Vuex.Store({
     },
     setTable (state, payload) {
       state.userTable = payload
+    },
+    setBaseTable (state, payload) {
+      state.userBaseTable = payload
     }
   },
   actions: {
@@ -40,6 +46,7 @@ export default new Vuex.Store({
               Vue.swal.close()
               const loadedTable = snapshot.val()
               commit('setTable', loadedTable)
+              commit('setBaseTable', loadedTable)
             })
 
           }
@@ -54,17 +61,26 @@ export default new Vuex.Store({
           }
         )
     },
-    sortTable({commit,state},payload){
+    sortTable ({commit, state}, payload){
       const sortedUserTable = [...state.userTable].sort((a,b) => {
-        if(a['Name'] > b['Name']){return 1}
-        if(a['Name'] < b['Name']){return -1}
+        if(a[payload.category] > b[payload.category]){return 1}
+        if(a[payload.category] < b[payload.category]){return -1}
         return 0
       })
-
-      if(payload){
+      if(payload.sortReverse){
         sortedUserTable.reverse()
       }
       commit('setTable', sortedUserTable)
+    },
+    filterTable ({commit, state}, payload) {
+      commit('setTable', state.userBaseTable)
+      state.resultTable = state.userTable
+
+        let currentResult = state.resultTable.filter( (row) => {
+          return row['Name'].toLowerCase().indexOf(payload.toLowerCase()) > -1
+        })
+
+        commit('setTable', currentResult)
     }
   },
   getters: {
