@@ -10,8 +10,11 @@
       </thead>
       <tbody>
       <tr v-for="(rows, index) in table" v-show="index >= (currentFirst) && index < (currentLast)">
-        <td v-for="value in rows">
-          {{value}}
+        <td v-for="(value, key) in rows">
+          <span v-if="key !== 'Description'">
+            {{value}}
+          </span>
+          <edit-cell v-else :value="value" :key="key.ID"></edit-cell>
         </td>
       </tr>
       </tbody>
@@ -34,7 +37,11 @@
 </template>
 
 <script>
+  import EditCell from './EditCell'
   export default {
+    components: {
+      EditCell
+    },
     props: ['pageSize'],
     computed: {
       table () {
