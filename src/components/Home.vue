@@ -16,6 +16,7 @@ export default {
   name: 'Home',
   data() {
         return {
+          pageSize: 10,
           model: {
               password: "britecore",
               email: "britecore@britecore.com",
@@ -61,7 +62,7 @@ export default {
   watch: {
     user (value) {
       if (value !== null && value !== undefined) {
-        this.$router.push('/table')
+        this.$router.push({ name: 'table', params: {pageSize: this.pageSize }})
       }
     }
   },
