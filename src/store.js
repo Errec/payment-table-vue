@@ -6,13 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userTable: [{
-      name: 'one',
-      age: '1'
-    },{
-      name: 'two',
-      age: '2'
-    }],
+    userTable: [],
     user: null
   },
   mutations: {
@@ -32,16 +26,18 @@ export default new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
-            setTimeout(() => {
-              Vue.swal.close()
-            }, 500)
             const newUser = {
               id: user.uid
             }
 
             commit('setUser', newUser)
 
+            Vue.swal({
+              title: 'Loading Table'
+            });
+            Vue.swal.showLoading();
             firebase.database().ref('/payments').on('value', snapshot => {
+              Vue.swal.close()
               const loadedTable = snapshot.val()
               commit('setTable', loadedTable)
             })
