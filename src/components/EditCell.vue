@@ -3,7 +3,7 @@
     <button v-if="!edit" type="button" @click="edit=!edit">edit</button>
     <button v-else type="button" @click="saveDescription">save</button>
     <span v-if="!edit">
-      {{dataRow.rows.Description}}
+      {{dataRow.Description}}
     </span>
     <input v-else type="text" name="" v-model="description">
   </span>
@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       edit: false,
-      description: this.dataRow.rows.Description
+      description: this.dataRow.Description
 
     }
   },
@@ -25,15 +25,12 @@ export default {
     saveDescription () {
       let childNode = {}
 
-      const nodeVal = firebase.database().ref('/payments').orderByChild('ID').equalTo(this.dataRow.rows.ID).on('value', snapshot => {
+      const nodeVal = firebase.database().ref('/payments').orderByChild('ID').equalTo(this.dataRow.ID).on('value', snapshot => {
         childNode = Object.keys(snapshot.val())[0]
       })
 
       firebase.database().ref(`/payments/${childNode}`).update({ Description: this.description })
       .then(() => {
-        if (this.sorted) {
-
-        }
         console.log(`DB updated at position /payments/${childNode}`)})
       .catch((error) => {
         Swal({
@@ -45,15 +42,14 @@ export default {
       })
 
       this.edit = false
-      if (this.dataRow.sorted) {
-        let payload = {
-          sortReverse: !this.dataRow.sortReverse,
-          category: 'Name'
+      if (this.$store.getters.isSorted) {
+        const payload = {
+          category: 'Name',
+          reverse: false
         }
         this.$store.dispatch('sortTable', payload)
       }
     }
-
   }
 }
 

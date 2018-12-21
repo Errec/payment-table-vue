@@ -2,16 +2,7 @@
   <div class="table">
     <table>
       <table-head :row="table[0]"></table-head>
-      <tbody>
-      <tr v-for="(rows, index) in table" v-show="index >= (currentFirst) && index < (currentLast)">
-        <td v-for="(value, key) in rows">
-          <span v-if="key !== 'Description'" :key="rows.ID">
-            {{value}}
-          </span>
-          <edit-cell v-else :dataRow="{rows, sorted, sortReverse}" :key="rows.ID"></edit-cell>
-        </td>
-      </tr>
-      </tbody>
+      <table-body :bodyData="{table, currentFirst, currentLast}"></table-body>
     </table>
 
     <div>
@@ -20,7 +11,7 @@
     </div>
 
     <div>
-      <button type="button" @click="sortTable(sortReverse)"> sort by name</button>
+      <button type="button" @click="sortTable"> sort by name</button>
     </div>
 
     <div>
@@ -31,12 +22,12 @@
 </template>
 
 <script>
-  import EditCell from './EditCell'
   import TableHead from './TableHead'
+  import TableBody from './TableBody'
   export default {
     components: {
-      EditCell,
-      TableHead
+      TableHead,
+      TableBody
     },
     props: ['pageSize'],
     computed: {
@@ -49,8 +40,6 @@
         nameSearch: '',
         currentFirst: 0,
         currentLast: this.pageSize,
-        sortReverse: true,
-        sorted: false
       }
     },
     methods: {
@@ -72,12 +61,10 @@
       },
       sortTable (sortReverse) {
         let payload = {
-          sortReverse: sortReverse,
-          category: 'Name'
+          category: 'Name',
+          reverse: true
         }
         this.$store.dispatch('sortTable', payload)
-        this.sortReverse = !this.sortReverse
-        this.sorted = true
       }
     },
     watch: {

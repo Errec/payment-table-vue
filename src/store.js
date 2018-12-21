@@ -9,7 +9,9 @@ export default new Vuex.Store({
     userTable: [],
     resultTable: [],
     userBaseTable: [],
-    user: null
+    user: null,
+    sorted: false,
+    sortedReverse: false
   },
   mutations: {
     setUser (state, payload) {
@@ -20,6 +22,12 @@ export default new Vuex.Store({
     },
     setBaseTable (state, payload) {
       state.userBaseTable = payload
+    },
+    setSorted (state, payload) {
+      state.sorted = payload
+    },
+    reverseSort (state, payload) {
+      state.sortedReverse = payload
     }
   },
   actions: {
@@ -67,10 +75,13 @@ export default new Vuex.Store({
         if(a[payload.category] < b[payload.category]){return -1}
         return 0
       })
-      if(payload.sortReverse){
+      if(state.sortedReverse && payload.reverse){
         sortedUserTable.reverse()
       }
+
+      commit('setSorted', true)
       commit('setTable', sortedUserTable)
+      commit('reverseSort', !state.sortedReverse)
     },
     filterTable ({commit, state}, payload) {
       commit('setTable', state.userBaseTable)
@@ -89,6 +100,9 @@ export default new Vuex.Store({
     },
     user (state) {
       return state.user
+    },
+    isSorted (state) {
+      return state.sorted
     }
   }
 })
