@@ -11,10 +11,10 @@
       <tbody>
       <tr v-for="(rows, index) in table" v-show="index >= (currentFirst) && index < (currentLast)">
         <td v-for="(value, key) in rows">
-          <span v-if="key !== 'Description'">
+          <span v-if="key !== 'Description'" :key="rows.ID">
             {{value}}
           </span>
-          <edit-cell v-else :rows="rows" :key="key.ID"></edit-cell>
+          <edit-cell v-else :rows="rows" :key="rows.ID"></edit-cell>
         </td>
       </tr>
       </tbody>

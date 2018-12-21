@@ -1,26 +1,46 @@
 <template>
   <span class="edit-cell">
-    <button type="button" @click="edit=!edit">edit</button>
-    <button type="button" @click="saveDescription">save</button>
+    <button v-if="!edit" type="button" @click="edit=!edit">edit</button>
+    <button v-else type="button" @click="saveDescription">save</button>
     <span v-if="!edit">
       {{rows.Description}}
     </span>
-    <input v-else type="text" name="" :rows="rows">
+    <input v-else type="text" name="" :rows="rows" v-model="description">
   </span>
 </template>
 <script>
-  
+
+import * as firebase from 'firebase'
+
 export default {
   props: ['rows'],
   data () {
     return {
-      edit: false
+      edit: false,
+      description: this.rows.Description
+
     }
   },
   methods: {
     saveDescription () {
-      console.log('saving')
+      let childNode = {}
+
+      const nodeVal = firebase.database().ref('/payments').orderByChild('ID').equalTo(this.rows.ID).on('value', snapshot => {
+        childNode = Object.keys(snapshot.val())[0]
+      })
+
+      firebase.database().ref(`/payments/${childNode}`).update({ Description: this.description }).then((error) => {console.log(`DB updated at position /payments/${childNode}`)}).catch(() => {
+        Swal({
+          type: 'error',
+          title: 'DB error',
+          text: error,
+          timer: 2000
+        })
+      })
+
+      this.edit = false
     }
+
   }
 }
 
