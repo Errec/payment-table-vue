@@ -14,7 +14,7 @@
           <span v-if="key !== 'Description'">
             {{value}}
           </span>
-          <edit-cell v-else :value="value" :key="key.ID"></edit-cell>
+          <edit-cell v-else :rows="rows" :key="key.ID"></edit-cell>
         </td>
       </tr>
       </tbody>
