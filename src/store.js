@@ -39,8 +39,9 @@ export default new Vuex.Store({
 
             Vue.swal({
               title: 'Loading Table'
-            });
+            })
             Vue.swal.showLoading();
+            
             firebase.database().ref('/payments').on('value', snapshot => {
               Vue.swal.close()
               const loadedTable = snapshot.val()

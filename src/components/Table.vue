@@ -14,7 +14,7 @@
           <span v-if="key !== 'Description'" :key="rows.ID">
             {{value}}
           </span>
-          <edit-cell v-else :rows="rows" :key="rows.ID"></edit-cell>
+          <edit-cell v-else :dataRow="{rows, sorted, sortReverse}" :key="rows.ID"></edit-cell>
         </td>
       </tr>
       </tbody>
@@ -53,7 +53,8 @@
         nameSearch: '',
         currentFirst: 0,
         currentLast: this.pageSize,
-        sortReverse: true
+        sortReverse: true,
+        sorted: false
       }
     },
     methods: {
@@ -80,6 +81,7 @@
         }
         this.$store.dispatch('sortTable', payload)
         this.sortReverse = !this.sortReverse
+        this.sorted = true
       }
     },
     watch: {
