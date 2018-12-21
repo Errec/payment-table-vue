@@ -1,13 +1,7 @@
 <template>
   <div class="table">
     <table>
-      <thead>
-        <tr>
-          <th v-for="(value, key) in table[0]">
-            {{ key }}
-          </th>
-        </tr>
-      </thead>
+      <table-head :row="table[0]"></table-head>
       <tbody>
       <tr v-for="(rows, index) in table" v-show="index >= (currentFirst) && index < (currentLast)">
         <td v-for="(value, key) in rows">
@@ -38,9 +32,11 @@
 
 <script>
   import EditCell from './EditCell'
+  import TableHead from './TableHead'
   export default {
     components: {
-      EditCell
+      EditCell,
+      TableHead
     },
     props: ['pageSize'],
     computed: {
