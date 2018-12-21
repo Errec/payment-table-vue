@@ -17,6 +17,10 @@ new Vue({
   store,
   render: h => h(App),
   created() {
+    if (!store.user) {
+      this.$router.push({ name: 'home'}
+    )}
+
     firebase.initializeApp({
       apiKey: "AIzaSyDN1cpkP5p_01RKEGxf2rAMqxg_ce4ecEQ",
       authDomain: "brite-core-db.firebaseapp.com",
