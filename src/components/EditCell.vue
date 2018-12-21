@@ -41,14 +41,17 @@ export default {
         })
       })
 
-      this.edit = false
-      if (this.$store.getters.isSorted) {
-        const payload = {
-          category: 'Name',
-          reverse: false
-        }
+      const payload = {
+        category: 'Name',
+        type: 'edit'
+      }
+
+      let tableState = this.$store.getters.sorted
+      if (tableState === 'reversed' || tableState === 'unreversed') {
         this.$store.dispatch('sortTable', payload)
       }
+
+      this.edit = false
     }
   }
 }

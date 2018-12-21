@@ -6,8 +6,8 @@
     </table>
 
     <div>
-      <button type="button" @click="previousPage"> <- back</button>
-      <button type="button" @click="nextPage">next -></button>
+      <button type="button" @click="previousPage"> back </button>
+      <button type="button" @click="nextPage"> next </button>
     </div>
 
     <div>
@@ -59,10 +59,10 @@
           return
         }
       },
-      sortTable (sortReverse) {
+      sortTable () {
         let payload = {
           category: 'Name',
-          reverse: true
+          type: 'sort'
         }
         this.$store.dispatch('sortTable', payload)
       }

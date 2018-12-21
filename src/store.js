@@ -11,7 +11,7 @@ export default new Vuex.Store({
     userBaseTable: [],
     user: null,
     sorted: false,
-    sortedReverse: false
+    tableState: 'unsorted'
   },
   mutations: {
     setUser (state, payload) {
@@ -26,8 +26,8 @@ export default new Vuex.Store({
     setSorted (state, payload) {
       state.sorted = payload
     },
-    reverseSort (state, payload) {
-      state.sortedReverse = payload
+    setTableState (state, payload) {
+      state.tableState = payload
     }
   },
   actions: {
@@ -70,18 +70,58 @@ export default new Vuex.Store({
         )
     },
     sortTable ({commit, state}, payload){
-      const sortedUserTable = [...state.userTable].sort((a,b) => {
-        if(a[payload.category] > b[payload.category]){return 1}
-        if(a[payload.category] < b[payload.category]){return -1}
-        return 0
-      })
-      if(state.sortedReverse && payload.reverse){
+      let sortedUserTable = []
+
+      if (payload.type === 'edit') {
+        if (state.tableState === 'unreversed') {
+          console.log('unrev')
+        sortedUserTable = [...state.userTable].sort((a,b) => {
+          if(a[payload.category] > b[payload.category]){return 1}
+          if(a[payload.category] < b[payload.category]){return -1}
+          return 0
+        })
+        commit('setTable', sortedUserTable)
+        } else {
+          console.log('rev')
+        sortedUserTable = [...state.userTable].sort((a,b) => {
+          if(a[payload.category] > b[payload.category]){return 1}
+          if(a[payload.category] < b[payload.category]){return -1}
+          return 0
+        })
         sortedUserTable.reverse()
+        commit('setTable', sortedUserTable)
+        }
+        return 0
       }
 
+      if (state.tableState === 'unsorted') {
+        commit('setTableState','unreversed')
+        sortedUserTable = [...state.userTable].sort((a,b) => {
+          if(a[payload.category] > b[payload.category]){return 1}
+          if(a[payload.category] < b[payload.category]){return -1}
+          return 0
+        })
+        commit('setTable', sortedUserTable)
+        } else if (state.tableState === 'unreversed') {
+          commit('setTableState','reversed')
+           sortedUserTable = [...state.userTable].sort((a,b) => {
+            if(a[payload.category] > b[payload.category]){return 1}
+            if(a[payload.category] < b[payload.category]){return -1}
+            return 0
+          })
+          sortedUserTable.reverse()
+          commit('setTable', sortedUserTable)
+        } else if (state.tableState === 'reversed') {
+          commit('setTableState','unreversed')
+             sortedUserTable = [...state.userTable].sort((a,b) => {
+              if(a[payload.category] > b[payload.category]){return 1}
+              if(a[payload.category] < b[payload.category]){return -1}
+              return 0
+          })
+          commit('setTable', sortedUserTable)
+        }
+
       commit('setSorted', true)
-      commit('setTable', sortedUserTable)
-      commit('reverseSort', !state.sortedReverse)
     },
     filterTable ({commit, state}, payload) {
       commit('setTable', state.userBaseTable)
@@ -101,8 +141,8 @@ export default new Vuex.Store({
     user (state) {
       return state.user
     },
-    isSorted (state) {
-      return state.sorted
+    sorted (state) {
+      return state.tableState
     }
   }
 })
