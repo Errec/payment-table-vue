@@ -1,8 +1,8 @@
 <template>
   <div class="login">
-    <div class="panel panel-default">
-      <div class="panel-heading">Login</div>
-      <div class="panel-body">
+    <div class="login__panel">
+      <div class="login__title">Login</div>
+      <div class="login__form">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
       </div>
     </div>
@@ -75,6 +75,9 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
-
+<style scoped lang="sass">
+.login
+  background-color: pink
+  border-radius: 5px
+  margin: 40px
 </style>
