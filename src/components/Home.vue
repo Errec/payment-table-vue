@@ -78,6 +78,4 @@ export default {
 <style scoped lang="sass">
 .login
   background-color: pink
-  border-radius: 5px
-  margin: 40px
 </style>
