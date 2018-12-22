@@ -1,6 +1,7 @@
 import * as firebase from 'firebase'
 import Vue from 'vue'
 import sortTable from '../helpers/sort-table'
+import formatDate from '../helpers/format-date'
 
 export default {
   signUserIn ({commit}, payload) {
@@ -25,6 +26,12 @@ export default {
           firebase.database().ref('/payments').on('value', snapshot => {
             Vue.swal.close()
             const loadedTable = snapshot.val()
+
+            loadedTable.forEach( person => {
+              person.Amount = "$" + person.Amount
+              person.Date = formatDate(person.Date)
+            })
+
             commit('setTable', loadedTable)
             commit('setBaseTable', loadedTable)
           })
