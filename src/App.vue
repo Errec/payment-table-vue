@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <h1>uncle scrooge's <br>payroll</h1><br></h1>
+    <header>
+      <h1>uncle scrooge's <br>payroll</h1><br></h1>
+      <div class="icon"></div>
+    </header>
     <router-view/>
   </div>
 </template>
@@ -47,4 +50,19 @@
       text-shadow: $black-duck -3px 3px
       text-transform: uppercase
       letter-spacing: 0.15rem
+  header
+    position: relative
+  .icon
+    position: absolute
+    background:
+      image: url("assets/img/uncle.png")
+      size: cover
+      repeat: no-repeat
+    width: 60px
+    height: 40px
+    top: 0
+    left: 0
+    right: 0
+    margin: 75px auto 0 auto
+    transform: translateX(80px)
 </style>

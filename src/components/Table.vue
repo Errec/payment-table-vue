@@ -172,6 +172,8 @@
       position: center
 
   .table__nav
+    position: relative
+    z-index: 0
     display: flex
     align-items: center
     justify-content: flex-end

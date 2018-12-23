@@ -17,6 +17,7 @@
     </div>
   </div>
 </template>
+
 <script>
 
 import * as firebase from 'firebase'
@@ -73,7 +74,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped lang="sass">
@@ -84,13 +84,15 @@ export default {
     position: absolute
     padding: 8px
     border-radius: 4px
-    bottom: -42px
+    bottom: 6px
 
   .edit-cell
     word-wrap: break-word
     overflow-wrap: break-word
 
   .edit-cell__window
+    padding: 10px
+    z-index: 1000
     position: fixed
     background-color: rgba($black-duck, 0.7)
     left: 0
@@ -153,6 +155,8 @@ export default {
       cursor: pointer
 
   .edit-cell__text-box
+    padding: 10px 12px 40px 6px
+    background-color: $yellow-duck
     position: relative
     width: 90%
     height: 90%
@@ -161,7 +165,7 @@ export default {
     padding-bottom: 32px
     textarea
       width: 100%
-      height: 100%
+      height: 90%
       resize: none
       border: solid black 2px
 
