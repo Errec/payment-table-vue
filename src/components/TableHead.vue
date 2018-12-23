@@ -24,4 +24,9 @@
     th
       color: $white-duck
       text-transform: uppercase
+
+  @media only screen and (max-width: 600px)
+    .table-head
+      font-size: 0.8rem
+
 </style>

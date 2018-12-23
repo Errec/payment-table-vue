@@ -1,9 +1,10 @@
 <template>
   <div class="edit-cell">
-    <span v-if="!edit">
+    <span class="edit-cell__text" v-if="!edit">
       {{truncatedText(dataRow.Description)}}
     </span>
     <button v-if="!edit" class="edit-cell__edit-btn" type="button" @click="edit=!edit"></button>
+    <button v-if="!edit" class="edit-cell__text-btn" type="button" @click="edit=!edit"></button>
     <div v-if="edit" class="edit-cell__window">
       <div class="edit-cell__text-box">
         <button class="edit-cell__save-btn" type="button" @click="saveDescription"></button>
@@ -84,6 +85,16 @@ export default {
     display: flex
     align-items: center
     justify-content: center
+  .edit-cell__text-btn
+    display: none
+    margin: 0 auto
+    border: none
+    background: 
+      image: url('../assets/img/document.svg')
+      color: transparent
+      size: cover
+    width: 30px
+    height: 30px
   .edit-cell__edit-btn
     float: right
     margin: 4px
@@ -102,8 +113,8 @@ export default {
       image: url('../assets/img/save.svg')
       color: transparent
       size: cover
-    width: 40px
-    height: 40px
+    width: 35px
+    height: 35px
     position: absolute
     left: 0
     bottom: -24px
@@ -122,4 +133,10 @@ export default {
       height: 100%
       resize: none
       border: solid black 2px
+
+  @media only screen and (max-width: 600px)
+    .edit-cell__edit-btn, .edit-cell__text
+      display: none
+    .edit-cell__text-btn
+      display: block
 </style>
