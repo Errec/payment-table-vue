@@ -75,3 +75,17 @@
 
   }
 </script>
+
+<style scoped lang="sass">
+  @import "../styles/variables/colors"
+
+  .table
+    padding: 8px
+    position: relative
+    background-color: rgba($yellow-duck, 0.9)
+    margin: 0 auto
+    width: 95%
+    border-radius: 4px
+  body, html
+    background-image: none
+</style>
