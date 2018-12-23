@@ -1,5 +1,16 @@
 <template>
   <div class="table">
+    <div class="table__panel">
+      <div class="table__search">
+        <input class="table__search-input" type="text" name="Search by Name" v-model="nameSearch" placeholder="Name">
+      </div>
+      <div>
+        <button type="button" @click="sortTable('Name','sort')">name</button>
+        <button type="button" @click="sortTable('Amount','sort')">Payment</button>
+      </div>
+
+    </div>
+
     <table>
       <table-head :row="table[0]"></table-head>
       <table-body :bodyData="{table, currentFirst, currentLast}"></table-body>
@@ -8,14 +19,6 @@
     <div>
       <button type="button" @click="previousPage"> back </button>
       <button type="button" @click="nextPage"> next </button>
-    </div>
-
-    <div>
-      <button type="button" @click="sortTable"> sort by name</button>
-    </div>
-
-    <div>
-      <label><input type="text" name="Search by Name" v-model="nameSearch" placeholder="Name"></label>
     </div>
 
   </div>
@@ -59,10 +62,10 @@
           return
         }
       },
-      sortTable () {
-        let payload = {
-          category: 'Name',
-          type: 'sort'
+      sortTable (category, type) {
+        const payload = {
+          category: category,
+          type: type
         }
         this.$store.dispatch('sortTable', payload)
       }
@@ -96,4 +99,32 @@
       border-collapse: collapse
       th,td
         border-right: 1px solid $black-duck
+  .table__search-input
+    position: absolute
+    top: 0
+    bottom: 0
+    padding-left: 4px
+    width: calc(100% - 45px)
+    outline: none
+    border: none
+  .table__search
+    overflow: hidden
+    border-radius: 4px
+    height: 45px
+    position: relative
+    max-width: 250px
+    background-color: white
+    border: solid black 2px
+    margin: 8px 0 
+    &:after
+      content: ""
+      position: absolute
+      right: 8px
+      top: 8px
+      width: 30px
+      height: 30px
+      background: 
+        image: url("../assets/img/search.svg")
+        size: cover
+
 </style>
