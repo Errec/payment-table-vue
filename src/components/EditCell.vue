@@ -7,7 +7,10 @@
     <button v-if="!edit" class="edit-cell__text-btn" type="button" @click="edit=!edit"></button>
     <div v-if="edit" class="edit-cell__window">
       <div class="edit-cell__text-box">
-        <button class="edit-cell__save-btn" type="button" @click="saveDescription"></button>
+        <div class="edit-cell__btn-wrapper">
+          <button class="edit-cell__save-btn" type="button" @click="saveDescription"></button>
+          <button class="edit-cell__cancel-btn" type="button" @click="cancelDescription"></button>
+        </div>
         <textarea name="" type="text" v-model="description"></textarea>
 
       </div>
@@ -25,7 +28,6 @@ export default {
     return {
       edit: false,
       description: this.dataRow.Description
-
     }
   },
   methods: {
@@ -33,6 +35,10 @@ export default {
       return _.truncate(text, {
         'length': 70
       });
+    },
+    cancelDescription () {
+      this.description = this.dataRow.Description
+      this.edit = false
     },
     saveDescription () {
       let childNode = {}
@@ -72,6 +78,13 @@ export default {
 
 <style scoped lang="sass">
   @import "../styles/variables/colors"
+  .edit-cell__btn-wrapper
+    background-color: $blue-duck
+    position: absolute
+    padding: 8px
+    border-radius: 4px
+    bottom: -42px
+
   .edit-cell
     word-wrap: break-word
     overflow-wrap: break-word
@@ -115,8 +128,20 @@ export default {
       size: cover
     width: 35px
     height: 35px
-    position: absolute
     left: 0
+    bottom: -24px
+    &:hover
+      cursor: pointer
+  .edit-cell__cancel-btn
+    margin-left: 12px
+    border: none
+    background: 
+      image: url('../assets/img/cancel.svg')
+      color: transparent
+      size: cover
+    width: 35px
+    height: 35px
+    left: 47px
     bottom: -24px
     &:hover
       cursor: pointer
