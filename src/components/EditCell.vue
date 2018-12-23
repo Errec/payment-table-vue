@@ -78,6 +78,7 @@ export default {
 
 <style scoped lang="sass">
   @import "../styles/variables/colors"
+
   .edit-cell__btn-wrapper
     background-color: $blue-duck
     position: absolute
@@ -88,6 +89,7 @@ export default {
   .edit-cell
     word-wrap: break-word
     overflow-wrap: break-word
+
   .edit-cell__window
     position: fixed
     background-color: rgba($black-duck, 0.7)
@@ -98,6 +100,7 @@ export default {
     display: flex
     align-items: center
     justify-content: center
+
   .edit-cell__text-btn
     display: none
     margin: 0 auto
@@ -108,6 +111,7 @@ export default {
       size: cover
     width: 30px
     height: 30px
+
   .edit-cell__edit-btn
     float: right
     margin: 4px
@@ -120,6 +124,7 @@ export default {
     height: 20px
     &:hover
       cursor: pointer
+
   .edit-cell__save-btn
     border: none
     background: 
@@ -132,6 +137,7 @@ export default {
     bottom: -24px
     &:hover
       cursor: pointer
+
   .edit-cell__cancel-btn
     margin-left: 12px
     border: none
@@ -164,4 +170,5 @@ export default {
       display: none
     .edit-cell__text-btn
       display: block
+
 </style>
