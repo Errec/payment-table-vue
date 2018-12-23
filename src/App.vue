@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <h1>uncle scrooge's</h1>
-    <h1>payroll</h1>
+    <h1>uncle scrooge's <br>payroll</h1><br></h1>
     <router-view/>
   </div>
 </template>
@@ -41,6 +40,7 @@
     width: 100%
     height: 100%
     h1
+      padding-top: 32px
       text-align: center
       font-family: 'Ranchers'
       color: $yellow-duck
