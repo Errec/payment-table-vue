@@ -76,7 +76,7 @@
   }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
   @import "../styles/variables/colors"
 
   .table
@@ -84,8 +84,16 @@
     position: relative
     background-color: rgba($yellow-duck, 0.9)
     margin: 0 auto
-    width: 95%
     border-radius: 4px
-  body, html
-    background-image: none
+    width: 92%
+    table
+      border-left: solid $black-duck 1px 
+      border-top: solid $black-duck 1px 
+      border-bottom: solid $black-duck 1px 
+      display: table
+      table-layout: fixed
+      width: 100%
+      border-collapse: collapse
+      th,td
+        border-right: 1px solid $black-duck
 </style>
