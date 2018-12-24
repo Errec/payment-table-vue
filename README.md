@@ -30,7 +30,7 @@ BEM
 Webpack
 
 ### How long did you spend on the test? Would you do anything differently if you had more time?
-About 20 working hours. !Know issues; the search filter keeps empty pages! If I had more time, my top priorities for this project would be: fix this issue: !The search filter keeps empty pages when the search is made after a pagination action!, more efficient way to access the DB(fetching data in chunks for each page), add register user, transition animations, improve router access, add logout method, improve error handle, add favicon, compress imgs, fix the table sizes for a better navigation, improve the navegation with page select. Most of these features are easey to achieve, but I need to move on to other projecs right now.  
+About 20 working hours. !Know issues; the search filter keeps empty pages! If I had more time, my top priorities for this project would be: fix this issue: !The search filter keeps empty pages when the search is made after a pagination action!, more efficient way to access the DB(fetching data in chunks for each page), add register user, transition animations, improve router access, add logout method, improve error handle,add throttle-debounce in some cases, add favicon, compress imgs, fix the table sizes for a better navigation, improve the navegation with page select. Most of these features are easey to achieve, but I need to move on to other projecs right now.  
 
 ### In what ways would you adapt your component so that it could be used in many different scenarios where a data table is required?
 Using functional programing and abstracting methods with general parameters
