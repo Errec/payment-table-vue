@@ -36,10 +36,10 @@ About 20 working hours. !Know issues; the search filter keeps empty pages! If I 
 Using functional programing and abstracting methods with general parameters
 
 ### What is your favorite CSS property? Why?
-Display: flex. A "native" grid system thats is highly supported nowadays, relatively easy to manage and learn
+Display: flex. A "native" grid system that is highly supported nowadays, relatively easy to manage and learn
 
 ### What is your favorite modern Javascript feature? Why?
-Fat arrows. Concise syntax for writing functions, bind external context(do not generate it's own 'this')
+Fat arrows. Concise syntax for writing functions, bind external context(do not generate it's own 'this') can be very pratical
 
 ### What is your favorite third-party Vue.js library? Why?
 Vuetify. Practical and fast way to get stylish and functional UIs 
