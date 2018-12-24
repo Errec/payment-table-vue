@@ -1,4 +1,4 @@
-# brite-core-table
+# payment-table-vue (brite-core-table, DuckTales themed)
 
 Project's live version [HERE](https://uncle-scrooge-payroll.surge.sh)
 
