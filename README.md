@@ -30,7 +30,7 @@ BEM
 Webpack
 
 ### How long did you spend on the test? Would you do anything differently if you had more time?
-About 20 working hours. If I had more time, my top priorities for this project would be: more efficient way to access the DB(fetching data in chunks for each page), transition animations, improve router access, add logout method, improve error handle, add favicon, compress imgs. 
+About 20 working hours. !Know issues; the search filter keeps empty pages! If I had more time, my top priorities for this project would be: fix this issue, more efficient way to access the DB(fetching data in chunks for each page), transition animations, improve router access, add logout method, improve error handle, add favicon, compress imgs. 
 
 ### In what ways would you adapt your component so that it could be used in many different scenarios where a data table is required?
 Using functional programing and abstracting methods with general parameters
